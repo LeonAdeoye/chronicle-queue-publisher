@@ -44,13 +44,15 @@ public class ChronicleQueueWriter
 
     public void close()
     {
+        System.out.println( "Sending END_OF_STREAM and closing chronicle queue..." );
+        appender.writeDocument(wire -> wire.write(() -> "key").text("END_OF_STREAM"));
         queue.close();
     }
 
-    public void write() throws Exception
+    public void write()
     {
         System.out.println( "Writing messages to chronicle queue..." );
-        for(long count = 100; count < 200; ++count)
+        for(long count = 0; count < 100; ++count)
         {
             String json = String.format("CASH_CHECK_REQUEST={\"clientId\": %s, \"instrumentId\":  %d, \"requestType\":  \"CASH_CHECK_REQUEST\"}", UUID.randomUUID(), count);
             appender.writeDocument(wire -> wire.write(() -> "key").text(json));
