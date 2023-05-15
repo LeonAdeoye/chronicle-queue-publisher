@@ -2,7 +2,6 @@ package com.leon;
 
 import net.openhft.chronicle.queue.ChronicleQueue;
 import net.openhft.chronicle.queue.ExcerptAppender;
-import org.apache.log4j.BasicConfigurator;
 import java.util.UUID;
 
 public class ChronicleQueueWriter
@@ -13,7 +12,7 @@ public class ChronicleQueueWriter
     public static void main( String[] args )
     {
         System.out.println( "Creating chronicle queue..." );
-        BasicConfigurator.configure();
+        //BasicConfigurator.configure();
         try
         {
             ChronicleQueueWriter writer = new ChronicleQueueWriter();
